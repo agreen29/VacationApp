@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_output.R
 \name{make_output}
 \alias{make_output}
-\title{Make Weather Forecasting Data Frame}
+\title{Make Weather Forecasting Function}
 \usage{
 make_output(fields, lat_input, lng_input, day_leaving, day_returning, num_days)
 }
