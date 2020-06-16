@@ -1,6 +1,5 @@
-VacationApp
-================
 
+<<<<<<< HEAD
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!-- badges: start -->
@@ -141,3 +140,5 @@ output <- make_output(fields = fields, lat_input = 35.2877,lng_input = -120.6673
 | Max Humidity           | 85         | 79.1       | 87         | 88.4       | 82.6       |
 | Sunrise                | 05:47      | 05:47      | 05:48      | 05:48      | 05:48      |
 | Sunset                 | 20:19      | 20:20      | 20:20      | 20:20      | 20:20      |
+=======
+>>>>>>> 99195a4d9d234ebcae80bf5a22190f069711858c
