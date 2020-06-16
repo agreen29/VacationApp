@@ -18,9 +18,6 @@ this should be in a list format}
 \item{day_leaving}{the date the user is planning to leave for their vacation in yyyy-mm-dd format. Must be a string.}
 
 \item{day_returning}{the last date the user is planning to be on their vacation in yyyy-mm-dd format. Must be a string.}
-
-\item{num_days}{this is the number of days between the start date and the end date of the vacation, this
-should be calculated with dates\link{2} - dates\link{1} + 2}
 }
 \value{
 a data frame with all weather for the given dates above and the given fields above

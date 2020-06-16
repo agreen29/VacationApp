@@ -17,14 +17,15 @@
 #' @param lng_input this is a longitude where you want to collect information on the given weather fields during the given dates. Must be numeric.
 #' @param day_leaving the date the user is planning to leave for their vacation in yyyy-mm-dd format. Must be a string.
 #' @param day_returning the last date the user is planning to be on their vacation in yyyy-mm-dd format. Must be a string.
-#' @param num_days this is the number of days between the start date and the end date of the vacation, this
-#'should be calculated with dates[2] - dates[1] + 2
 #'
 #'@return a data frame with all weather for the given dates above and the given fields above
 #'
 #'@export
 
-make_output <- function(fields, lat_input, lng_input, day_leaving, day_returning, num_days) {
+make_output <- function(fields, lat_input, lng_input, day_leaving, day_returning) {
+
+  dates <- date_input(day_leaving, day_returning)
+  num_days <- day(dates[2]) - day(dates[1]) + 2
 
   big_query <- query_weather(fields, lat_input, lng_input, day_leaving, day_returning)
 
@@ -167,7 +168,7 @@ query_weather <- function(fields, lat_input, lng_input, day_leaving, day_returni
                             fields = x,
                             start_time = dates[1],
                             end_time = dates[2],
-                            apikey = "Sb9vXfDnuOb1qRqhdU0wgi7L9FeMB2D5"))$content)))
+                            apikey = "K4wn45o6Nklb6jsL8aRS8G4Fx6DqQ3DZ"))$content)))
                   })
   return (weather)
 }
