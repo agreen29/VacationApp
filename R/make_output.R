@@ -58,7 +58,7 @@ query_weather <- function(fields, lat_input, lng_input, dates) {
 #'@description this function uses the list of lists from the returned element in query_weather and creates a dataframe to show all weather
 #'requested in a nice manner and for the dates specified
 #'
-#'@importFrom lubridate rbind
+#'@importFrom lubridate rbind as_datetime
 #'@importFrom purrr pmap
 #'@import datetime
 #'@import tidyverse
