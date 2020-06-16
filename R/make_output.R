@@ -1,4 +1,4 @@
-#'@title Make Weather Forecasting Data Frame
+#'@title Make Weather Forecasting Function
 #'
 #'@description The make_output function greats a data frame that includes weather forecasting for up to 15 days from today, after a user inputs
 #' a starting data and ending date of a trip. Th function uses another function in this package to get an address and plugs it into
@@ -133,6 +133,7 @@ make_output <- function(fields, lat_input, lng_input, day_leaving, day_returning
   return(weather)
 }
 
+#'@title Query Weather Helper Function
 #' @description This is the function that calls the API with the given dates from the date_input fucntion and the location from the
 #' directions function.
 #'
@@ -168,7 +169,7 @@ query_weather <- function(fields, lat_input, lng_input, day_leaving, day_returni
                   })
   return (weather)
 }
-
+#' @title Date Input Helper Function
 #' @description This is a helper function for query_weather that takes in dates in yyyy-mm-dd format and outputs them in a form that the API can handle:
 #' @importFrom anytime anydate
 #'
