@@ -2,9 +2,9 @@
 % Please edit documentation in R/directions.R
 \name{directions}
 \alias{directions}
-\title{A function to provide visual and textual directions from a starting location to an ending location}
+\title{Directions Function}
 \usage{
-directions(query)
+directions(from, to)
 }
 \arguments{
 \item{from}{The starting location of your designated route. Must be a string in the format: "Street Address, City, State"}
@@ -15,5 +15,5 @@ directions(query)
 List of Data Table, Leaflet Map
 }
 \description{
-A function to provide visual and textual directions from a starting location to an ending location
+A function to provide visual and textual directions from a starting location to an ending location.
 }

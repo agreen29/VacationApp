@@ -2,7 +2,7 @@
 % Please edit documentation in R/directions.R
 \name{get_query}
 \alias{get_query}
-\title{Helper function to query the data from the MapQuest API}
+\title{Get Query Function}
 \usage{
 get_query(from, to)
 }
@@ -15,5 +15,5 @@ get_query(from, to)
 A List of data from query specifying directions, latitude and longitude points of each direction, etc.
 }
 \description{
-Helper function to query the data from the MapQuest API
+Helper function to query the data from the MapQuest API.
 }

@@ -1,4 +1,9 @@
-#' A function to provide visual and textual directions from a starting location to an ending location
+#' @title Directions Function
+#'
+#' @description A function to provide visual and textual directions from a starting location to an ending location.
+#'
+#' @usage directions(from, to)
+#'
 #'
 #' @param from The starting location of your designated route. Must be a string in the format: "Street Address, City, State"
 #' @param to The ending location of your designated route. Must be a string in the format: "Street Address, City, State"
@@ -9,7 +14,7 @@
 #' @importFrom tidyverse
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' 
+#'
 #' @export
 
 directions <- function(from, to){
@@ -17,7 +22,7 @@ directions <- function(from, to){
   api_data <- fromJSON(rawToChar(query$content))
   start_long_pt <- api_data$route$locations$displayLatLng[1,1]
   start_lat_pt <- api_data$route$locations$displayLatLng[1,2]
-  
+
   data_directions <- api_data$route$legs$maneuvers %>% as.data.frame()
   start_lat_long <- data_directions$startPoint
   final_data <- data_directions %>% select(distance, narrative) %>% cbind(start_lat_long)
@@ -31,9 +36,14 @@ directions <- function(from, to){
       color = "red"
     )
   return (list(final_data, map))
-  
+
 }
-#' Helper function to query the data from the MapQuest API
+#' @title Get Query Function
+#'
+#' @description Helper function to query the data from the MapQuest API.
+#'
+#' @usage get_query(from, to)
+#'
 #'
 #' @param from The starting location of your designated route. Must be a string in the format: "Street Address, City, State"
 #' @param to The ending location of your designated route. Must be a string in the format: "Street Address, City, State"

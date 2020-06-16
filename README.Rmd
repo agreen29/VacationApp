@@ -33,5 +33,5 @@ library(VacationApp)
 ```
 
 ## Directions Function
-
+The directions() function will provide directions on how to arrive to the designated route of choice. This function takes the following inputs: from, to. The parameter *from* will take in a string specifying the starting location of their travel route. The parameter *to* will take in a string specifying the final destination of their travel route. Both parameters will need to be in the format "Street Address, City, State."
 ## Weather Function
