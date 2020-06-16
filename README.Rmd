@@ -43,9 +43,18 @@ The directions() function will provide directions on how to arrive to the design
 ```{r}
 my_directions <- directions(from = "12 Garden St, Chatham, NJ", to = "275 Lincoln St, San Luis Obispo, CA")
 #displaying the data frame
-my_directions[[1]]
+out <- my_directions[[1]]
 #displaying Leaflet Map
 my_directions[[2]]
+```
+
+```{r, result=FALSE}
+#displaying the data frame
+out <- my_directions[[1]]
+```
+
+```{r, echo=FALSE}
+knitr::kable(out)
 ```
 
 ## Weather Function
