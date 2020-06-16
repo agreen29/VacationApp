@@ -15,5 +15,5 @@ date_input(day_leaving, day_returning)
 a vector that includes the start time of the vacation and the end time in ISO8601 format for the API
 }
 \description{
-This is a helper function for query_weather that takes in dates in yyyy-mm-dd format and outputs them in a form that the API can handle:
+This is a helper function for query_weather that takes in dates in yyyy-mm-dd format and outputs them in a form that the API can handle.
 }

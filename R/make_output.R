@@ -5,7 +5,7 @@
 #' a query for a weather API to collect the forecast on that location.
 #' @usage make_output(fields, lat_input, lng_input, day_leaving, day_returning, num_days)
 #'
-#'@importFrom lubridate as_datetime
+#'@importFrom lubridate day as_datetime
 #'@importFrom purrr pmap
 #'@import datetime
 #'@import tidyverse

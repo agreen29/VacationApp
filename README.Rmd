@@ -41,18 +41,16 @@ directions(from = "12 Garden St, Chatham, NJ", to = "275 Lincoln St, San Luis Ob
 ## Weather Function
 The query_weather() function will provide the following information concerning the forecast weather for their destination: the daily temperature, precipitation, wind speed, humidity, visibility, time of sunrise, and time of sunset! The parameter *lat_input* will take in an integer of the latitude where you want to collect information on the given weather fields during the given dates. The parameter *lng_input* will take in an integer of the longitude where you want to collect information on the given weather fields during the given dates. The parameter *day_leaving* will take in the date the user is planning to leave for their vacation in yyyy-mm-dd format. The parameter *day_returning* will take in the last date the user is planning to be on their vacation in yyyy-mm-dd format. The parameter *num_days* will take in the number of days between the start date and the end date of the vacation. This function will return a a data frame with all weather forecasts for the given dates above. This information will be extremely useful for families who want to compare different camping sites, so they will be able to make an informed decision on the best travel spot for their weekend getaway. 
 
+(fields, lat_input, lng_input, day_leaving, day_returning, num_days)
 
 ```{r}
+#fields of interest
 fields <- list("precipitation", "temp", "feels_like", "wind_speed", "visibility", "humidity", "sunrise", "sunset") 
-
-dates <- date_input("2020-06-13", "2020-06-16")
 
 #calculating the number of days
 num_days <- day(dates[2]) - day(dates[1]) + 2
 
-big_query <- query_weather(fields, 35.2877, -120.6673, dates)
-
-make_output(big_query, num_days)
+make_output(fields = fields, lat_input = 35.2877,lng_input = -120.6673, day_leaving = "2020-06-13", day_returning = "2020-06-16", num_days = num_days)
 ```
 
 
