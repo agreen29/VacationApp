@@ -2,30 +2,22 @@
 % Please edit documentation in R/make_output.R
 \name{date_input}
 \alias{date_input}
-\title{The make_output fucntion greats a dataframe that includes weather forecasting for up to 15 days from today, after a user inputs
-a starting data and ending date of a trip. Th funciton uses another funciton in this package to get an address and plugs it into
-a query for a weather API to collect the forecast on that loaction.}
+\title{Make Weather Forecasting Data Frame}
 \usage{
 date_input(day_leaving, day_returning)
 }
 \arguments{
-\item{day_leaving}{the date the user is planning to leave for their vaction in "yyyy-mm-dd" format}
+\item{day_leaving}{the date the user is planning to leave for their vacation in yyyy-mm-dd format}
 
-\item{day_returning}{the last date the user is planning to be on their vaction in "yyyy-mm-dd" format}
-
-\item{latitude}{The latitude of the location, default stored in environment by find_loc function}
-
-\item{longitude}{The longitude of the location, default stored in environment by find_loc function}
-
-\item{api_key}{The key for the api, default stored in environment by register_climacell_key function}
+\item{day_returning}{the last date the user is planning to be on their vacation in yyyy-mm-dd format}
 }
 \value{
-A data set with weather information between today and tommorow and the diffrences by hour
-
 a vector that includes the start time of the vacation and the end time in ISO8601 format for the API
 }
 \description{
-The make_output fucntion greats a dataframe that includes weather forecasting for up to 15 days from today, after a user inputs
-a starting data and ending date of a trip. Th funciton uses another funciton in this package to get an address and plugs it into
-a query for a weather API to collect the forecast on that loaction.
+The make_output function greats a data frame that includes weather forecasting for up to 15 days from today, after a user inputs
+a starting data and ending date of a trip. Th function uses another function in this package to get an address and plugs it into
+a query for a weather API to collect the forecast on that location.
+
+This is a helper function that takes in dates in yyyy-mm-dd format and outputs them in a form that the API can handle:
 }
