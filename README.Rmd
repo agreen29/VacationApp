@@ -3,6 +3,7 @@ title: "VacationApp"
 output: html_document
 ---
 
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
@@ -37,6 +38,8 @@ The directions() function will provide directions on how to arrive to the design
 
 ```{r}
 my_directions <- directions(from = "12 Garden St, Chatham, NJ", to = "275 Lincoln St, San Luis Obispo, CA")
+#displaying Leaflet Map
+my_directions[[2]]
 ```
 
 ```{r, result=FALSE}
