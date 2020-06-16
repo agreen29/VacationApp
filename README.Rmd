@@ -3,7 +3,7 @@ title: "VacationApp"
 linktormd: true
 leafletmap: true
 always_allow_html: yes
-output: github_document
+output: html_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
