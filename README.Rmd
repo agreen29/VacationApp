@@ -50,7 +50,7 @@ fields <- list("precipitation", "temp", "feels_like", "wind_speed", "visibility"
 #calculating the number of days
 #num_days <- day(dates[2]) - day(dates[1]) + 2
 
-make_output(fields = fields, lat_input = 35.2877,lng_input = -120.6673, day_leaving = "2020-06-13", day_returning = "2020-06-16")
+make_output(fields = fields, lat_input = 35.2877,lng_input = -120.6673, day_leaving = "2020-06-16", day_returning = "2020-06-18")
 ```
 
 
