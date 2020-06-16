@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -442,13 +442,38 @@ color: #d14;
           theseArgs = theseArgs.concat([task.data]);
           task = task.code;
         }
-        var taskFunc = eval("(" + task + ")");
+        var taskFunc = tryEval(task);
         if (typeof(taskFunc) !== "function") {
           throw new Error("Task must be a function! Source:\n" + task);
         }
         taskFunc.apply(target, theseArgs);
       });
     }
+  }
+
+  // Attempt eval() both with and without enclosing in parentheses.
+  // Note that enclosing coerces a function declaration into
+  // an expression that eval() can parse
+  // (otherwise, a SyntaxError is thrown)
+  function tryEval(code) {
+    var result = null;
+    try {
+      result = eval(code);
+    } catch(error) {
+      if (!error instanceof SyntaxError) {
+        throw error;
+      }
+      try {
+        result = eval("(" + code + ")");
+      } catch(e) {
+        if (e instanceof SyntaxError) {
+          throw error;
+        } else {
+          throw e;
+        }
+      }
+    }
+    return result;
   }
 
   function initSizing(el) {
@@ -843,17 +868,56 @@ color: #d14;
     invokePostRenderHandlers();
   }
 
-  // Wait until after the document has loaded to render the widgets.
+
+  function has_jQuery3() {
+    if (!window.jQuery) {
+      return false;
+    }
+    var $version = window.jQuery.fn.jquery;
+    var $major_version = parseInt($version.split(".")[0]);
+    return $major_version >= 3;
+  }
+
+  /*
+  / Shiny 1.4 bumped jQuery from 1.x to 3.x which means jQuery's
+  / on-ready handler (i.e., $(fn)) is now asyncronous (i.e., it now
+  / really means $(setTimeout(fn)).
+  / https://jquery.com/upgrade-guide/3.0/#breaking-change-document-ready-handlers-are-now-asynchronous
+  /
+  / Since Shiny uses $() to schedule initShiny, shiny>=1.4 calls initShiny
+  / one tick later than it did before, which means staticRender() is
+  / called renderValue() earlier than (advanced) widget authors might be expecting.
+  / https://github.com/rstudio/shiny/issues/2630
+  /
+  / For a concrete example, leaflet has some methods (e.g., updateBounds)
+  / which reference Shiny methods registered in initShiny (e.g., setInputValue).
+  / Since leaflet is privy to this life-cycle, it knows to use setTimeout() to
+  / delay execution of those methods (until Shiny methods are ready)
+  / https://github.com/rstudio/leaflet/blob/18ec981/javascript/src/index.js#L266-L268
+  /
+  / Ideally widget authors wouldn't need to use this setTimeout() hack that
+  / leaflet uses to call Shiny methods on a staticRender(). In the long run,
+  / the logic initShiny should be broken up so that method registration happens
+  / right away, but binding happens later.
+  */
+  function maybeStaticRenderLater() {
+    if (shinyMode && has_jQuery3()) {
+      window.jQuery(window.HTMLWidgets.staticRender);
+    } else {
+      window.HTMLWidgets.staticRender();
+    }
+  }
+
   if (document.addEventListener) {
     document.addEventListener("DOMContentLoaded", function() {
       document.removeEventListener("DOMContentLoaded", arguments.callee, false);
-      window.HTMLWidgets.staticRender();
+      maybeStaticRenderLater();
     }, false);
   } else if (document.attachEvent) {
     document.attachEvent("onreadystatechange", function() {
       if (document.readyState === "complete") {
         document.detachEvent("onreadystatechange", arguments.callee);
-        window.HTMLWidgets.staticRender();
+        maybeStaticRenderLater();
       }
     });
   }
@@ -941,7 +1005,7 @@ color: #d14;
       if (o !== null && typeof o === "object" && part in o) {
         if (i == (l - 1)) { // if we are at the end of the line then evalulate
           if (typeof o[part] === "string")
-            o[part] = eval("(" + o[part] + ")");
+            o[part] = tryEval(o[part]);
         } else { // otherwise continue to next embedded object
           o = o[part];
         }
@@ -4084,9 +4148,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -4100,7 +4162,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -4117,8 +4178,6 @@ summary {
 </style>
 
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -4164,6 +4223,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -4176,20 +4236,17 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -4220,8 +4277,8 @@ $(document).ready(function () {
 out &lt;- my_directions[[1]]
 #displaying Leaflet Map
 my_directions[[2]]</code></pre>
-<div id="htmlwidget-e519e7cb1b3cbab4ae23" style="width:100%;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e519e7cb1b3cbab4ae23">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[40.729744,40.729839,40.730549,40.746014,40.753582,40.75309,40.784615,40.86372,41.591743,41.577854,41.578255,41.57943,41.440346,41.596916,41.231907,41.232407,41.02877,39.787117,38.579834,34.875713,34.873745,35.355377,35.354359,35.354855,35.611778,35.615997,35.616295,35.642483,35.642365,35.284985,35.283859,35.284641,35.28764],[-74.416214,-74.41642,-74.415871,-74.430031,-74.438438,-74.452492,-74.468513,-74.41687,-87.228531,-87.541199,-87.669945,-87.675652,-90.321487,-90.675735,-95.835304,-95.903282,-102.151619,-105.077011,-112.598755,-117.071068,-117.079323,-119.175659,-119.250702,-119.332771,-119.649712,-119.651009,-119.650925,-120.685577,-120.685509,-120.665932,-120.668045,-120.668671,-120.667091],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Start out going northwest on Garden St toward Conger Ter.","Turn right onto Conger Ter.","Turn left onto Southern Blvd/County Hwy-647.","Turn left onto Shunpike Rd/County Hwy-646. Continue to follow Shunpike Rd.","Turn left onto Loantaka Way/County Hwy-636.","Turn right onto Spring Valley Rd/County Hwy-601. Continue to follow County Hwy-601.","Merge onto I-287 N via the ramp on the left.","Merge onto I-80 W via EXIT 41B toward Del Water Gap (Portions toll) (Passing through Pennsylvania and Ohio, then crossing into Indiana).","Merge onto I-80 W/I-94 W via EXIT 21 toward IN-51 S (Crossing into Illinois).","Keep left to take I-80 W/I-294 N toward Wisconsin-Iowa (Portions toll).","Take the I-80 W exit toward Iowa.","Merge onto I-80 W (Portions toll).","Stay straight to go onto I-280 W (Crossing into Iowa).","Merge onto I-80 W via the exit on the left toward Des Moines.","Stay straight to go onto I-80 (EXPRESS) W.","I-80 (EXPRESS) W becomes I-80 W (Crossing into Nebraska).","Merge onto I-76 W via EXIT 102 on the left toward Denver (Crossing into Colorado).","I-76 W becomes I-70 W (Crossing into Utah).","Merge onto I-15 S via the exit on the left toward Las Vegas (Passing through Arizona and Nevada, then crossing into California).","Take the CA-58 W exit, EXIT 179, toward Bakersfield.","Merge onto CA-58 W.","Stay straight to go onto Stockdale Hwy.","Keep left at the fork to continue on Stockdale Hwy.","Merge onto I-5 N toward Sacramento.","Take the CA-46 exit, EXIT 278, toward Lost Hills/Paso Robles.","Keep left to take the ramp toward Lost Hills/Paso Robles.","Turn left onto Highway 46/CA-46. Continue to follow CA-46.","Turn left to stay on CA-46.","Merge onto US-101 S.","Take the Broad St exit, EXIT 202B.","Turn slight right onto Broad St/CA-227.","Turn right onto Lincoln Ave/CA-227. Continue to follow Lincoln Ave.","275 LINCOLN AVE is on the left."],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolylines","args":[[[[{"lng":[-74.416214,-74.41642,-74.415871,-74.430031,-74.438438,-74.452492,-74.468513,-74.41687,-87.228531,-87.541199,-87.669945,-87.675652,-90.321487,-90.675735,-95.835304,-95.903282,-102.151619,-105.077011,-112.598755,-117.071068,-117.079323,-119.175659,-119.250702,-119.332771,-119.649712,-119.651009,-119.650925,-120.685577,-120.685509,-120.665932,-120.668045,-120.668671,-120.667091],"lat":[40.729744,40.729839,40.730549,40.746014,40.753582,40.75309,40.784615,40.86372,41.591743,41.577854,41.578255,41.57943,41.440346,41.596916,41.231907,41.232407,41.02877,39.787117,38.579834,34.875713,34.873745,35.355377,35.354359,35.354855,35.611778,35.615997,35.616295,35.642483,35.642365,35.284985,35.283859,35.284641,35.28764]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":false,"fillColor":"red","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[40.729744,-74.416214],15,[]],"limits":{"lat":[34.873745,41.596916],"lng":[-120.685577,-74.415871]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-dfa9d84efebf18b85be0" style="width:100%;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dfa9d84efebf18b85be0">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[40.729744,40.729839,40.730549,40.746014,40.753582,40.75309,40.784615,40.86372,41.591743,41.577854,41.578255,41.57943,41.440346,41.596916,41.231907,41.232407,41.02877,39.787117,38.579834,34.875713,34.873745,35.355377,35.354359,35.354855,35.611778,35.615997,35.616295,35.642483,35.642365,35.284985,35.283859,35.284641,35.28764],[-74.416214,-74.41642,-74.415871,-74.430031,-74.438438,-74.452492,-74.468513,-74.41687,-87.228531,-87.541199,-87.669945,-87.675652,-90.321487,-90.675735,-95.835304,-95.903282,-102.151619,-105.077011,-112.598755,-117.071068,-117.079323,-119.175659,-119.250702,-119.332771,-119.649712,-119.651009,-119.650925,-120.685577,-120.685509,-120.665932,-120.668045,-120.668671,-120.667091],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Start out going northwest on Garden St toward Conger Ter.","Turn right onto Conger Ter.","Turn left onto Southern Blvd/County Hwy-647.","Turn left onto Shunpike Rd/County Hwy-646. Continue to follow Shunpike Rd.","Turn left onto Loantaka Way/County Hwy-636.","Turn right onto Spring Valley Rd/County Hwy-601. Continue to follow County Hwy-601.","Merge onto I-287 N via the ramp on the left.","Merge onto I-80 W via EXIT 41B toward Del Water Gap (Portions toll) (Passing through Pennsylvania and Ohio, then crossing into Indiana).","Merge onto I-80 W/I-94 W via EXIT 21 toward IN-51 S (Crossing into Illinois).","Keep left to take I-80 W/I-294 N toward Wisconsin-Iowa (Portions toll).","Take the I-80 W exit toward Iowa.","Merge onto I-80 W (Portions toll).","Stay straight to go onto I-280 W (Crossing into Iowa).","Merge onto I-80 W via the exit on the left toward Des Moines.","Stay straight to go onto I-80 (EXPRESS) W.","I-80 (EXPRESS) W becomes I-80 W (Crossing into Nebraska).","Merge onto I-76 W via EXIT 102 on the left toward Denver (Crossing into Colorado).","I-76 W becomes I-70 W (Crossing into Utah).","Merge onto I-15 S via the exit on the left toward Las Vegas (Passing through Arizona and Nevada, then crossing into California).","Take the CA-58 W exit, EXIT 179, toward Bakersfield.","Merge onto CA-58 W.","Stay straight to go onto Stockdale Hwy.","Keep left at the fork to continue on Stockdale Hwy.","Merge onto I-5 N toward Sacramento.","Take the CA-46 exit, EXIT 278, toward Lost Hills/Paso Robles.","Keep left to take the ramp toward Lost Hills/Paso Robles.","Turn left onto Highway 46/CA-46. Continue to follow CA-46.","Turn left to stay on CA-46.","Merge onto US-101 S.","Take the Broad St exit, EXIT 202B.","Turn slight right onto Broad St/CA-227.","Turn right onto Lincoln Ave/CA-227. Continue to follow Lincoln Ave.","275 LINCOLN AVE is on the left."],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolylines","args":[[[[{"lng":[-74.416214,-74.41642,-74.415871,-74.430031,-74.438438,-74.452492,-74.468513,-74.41687,-87.228531,-87.541199,-87.669945,-87.675652,-90.321487,-90.675735,-95.835304,-95.903282,-102.151619,-105.077011,-112.598755,-117.071068,-117.079323,-119.175659,-119.250702,-119.332771,-119.649712,-119.651009,-119.650925,-120.685577,-120.685509,-120.665932,-120.668045,-120.668671,-120.667091],"lat":[40.729744,40.729839,40.730549,40.746014,40.753582,40.75309,40.784615,40.86372,41.591743,41.577854,41.578255,41.57943,41.440346,41.596916,41.231907,41.232407,41.02877,39.787117,38.579834,34.875713,34.873745,35.355377,35.354359,35.354855,35.611778,35.615997,35.616295,35.642483,35.642365,35.284985,35.283859,35.284641,35.28764]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":false,"fillColor":"red","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[40.729744,-74.416214],15,[]],"limits":{"lat":[34.873745,41.596916],"lng":[-120.685577,-74.415871]}},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#displaying the data frame
 out &lt;- my_directions[[1]]</code></pre>
 <table>
@@ -4580,6 +4637,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
