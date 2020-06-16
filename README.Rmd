@@ -2,6 +2,7 @@
 title: "VacationApp"
 always_allow_html: yes
 output:
+  github_document:
   html_document:
     self_contained: false
     df_print: paged
@@ -55,10 +56,6 @@ The query_weather() function will provide the following information concerning t
 ```{r}
 #fields of interest
 fields <- list("precipitation", "temp", "feels_like", "wind_speed", "visibility", "humidity", "sunrise", "sunset") 
-
-
-#calculating the number of days
-#num_days <- day(dates[2]) - day(dates[1]) + 2
 
 make_output(fields = fields, lat_input = 35.2877,lng_input = -120.6673, day_leaving = "2020-06-18", day_returning = "2020-06-20")
 
