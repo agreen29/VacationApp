@@ -30,10 +30,8 @@ date_input <- function(day_leaving, day_returning){
 #' @param fields this is a list of weather fields that you want to collect in your weather query from climacell,
 #' the full list of offered fields are given at https://developer.climacell.co/v3/docs/forecast in the "Daily" section,
 #' this should be in a list format
-#' @param lat_input this is a latitude where you want to collect information on the given weather fields during the given
-#' dates
-#' @param lng_input this is a longitude where you want to collect information on the given weather fields during the given
-#' dates
+#' @param lat_input this is a latitude where you want to collect information on the given weather fields during the given dates
+#' @param lng_input this is a longitude where you want to collect information on the given weather fields during the given dates
 #' @param dates this is the output of the date_input function and gives the starting and ending date for the query to
 #' collect weather data for
 #'
