@@ -4,7 +4,7 @@
 #' a starting data and ending date of a trip. Th function uses another function in this package to get an address and plugs it into
 #' a query for a weather API to collect the forecast on that location.
 #'
-#'@importFrom lubridate rbind as_datetime
+#'@importFrom lubridate as_datetime
 #'@importFrom purrr pmap
 #'@import datetime
 #'@import tidyverse
