@@ -10,7 +10,7 @@
 #'
 #' @return List of Data Table, Leaflet Map
 #'
-#' @importFrom leaflet
+#' @import leaflet
 #' @importFrom tidyverse
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

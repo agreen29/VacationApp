@@ -33,5 +33,11 @@ library(VacationApp)
 ```
 
 ## Directions Function
-The directions() function will provide directions on how to arrive to the designated route of choice. This function takes the following inputs: from, to. The parameter *from* will take in a string specifying the starting location of their travel route. The parameter *to* will take in a string specifying the final destination of their travel route. Both parameters will need to be in the format "Street Address, City, State."
+The directions() function will provide directions on how to arrive to the designated route of choice. This function takes the following inputs: from, to. The parameter *from* will take in a string specifying the starting location of their travel route. The parameter *to* will take in a string specifying the final destination of their travel route. Both parameters will need to be in the format "Street Address, City, State". The function will return a data table of step-by-step directions and a Leaflet map visualizing the directions. Click on the Leaflet map markers to view each step of the directions to recieve a better visualization on how to get to your next vacation destination!
+```{r}
+directions(from = "12 Garden St, Chatham, NJ", to = "275 Lincoln St, San Luis Obispo, CA")
+```
+
 ## Weather Function
+The query_weather() function will provide the following information concerning the forecast weather for their destination: the daily temperature, precipitation, wind speed, humidity, visibility, time of sunrise, and time of sunset! The parameter *from* will take in a string specifying the starting location of their travel route. The parameter *to* will take in a string specifying the final destination of their travel route.This information will be extremely useful for families who want to compare different camping sites, so they will be able to make an informed decision on the best travel spot for their weekend getaway. 
+
