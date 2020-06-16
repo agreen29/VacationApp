@@ -3,6 +3,7 @@
 #'@description The make_output function greats a data frame that includes weather forecasting for up to 15 days from today, after a user inputs
 #' a starting data and ending date of a trip. Th function uses another function in this package to get an address and plugs it into
 #' a query for a weather API to collect the forecast on that location.
+#' @usage make_output(fields, lat_input, lng_input, day_leaving, day_returning, num_days)
 #'
 #'@importFrom lubridate as_datetime
 #'@importFrom purrr pmap
@@ -136,6 +137,7 @@ make_output <- function(fields, lat_input, lng_input, day_leaving, day_returning
 #'@title Query Weather Helper Function
 #' @description This is the function that calls the API with the given dates from the date_input fucntion and the location from the
 #' directions function.
+#' @usage query_weather(fields, lat_input, lng_input, day_leaving, day_returning)
 #'
 #' @importFrom httr GET
 #' @importFrom jsonlite fromJSON
@@ -170,7 +172,8 @@ query_weather <- function(fields, lat_input, lng_input, day_leaving, day_returni
   return (weather)
 }
 #' @title Date Input Helper Function
-#' @description This is a helper function for query_weather that takes in dates in yyyy-mm-dd format and outputs them in a form that the API can handle:
+#' @description This is a helper function for query_weather that takes in dates in yyyy-mm-dd format and outputs them in a form that the API can handle.
+#' @usage date_input(day_leaving, day_returning)
 #' @importFrom anytime anydate
 #'
 #' @param day_leaving the date the user is planning to leave for their vacation in yyyy-mm-dd format
