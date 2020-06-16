@@ -169,6 +169,7 @@ query_weather <- function(fields, lat_input, lng_input, day_leaving, day_returni
                             start_time = dates[1],
                             end_time = dates[2],
                             apikey = "VE8O7bY7qptM8QqRSoOGRvT5AGQA3eHh"))$content)))
+
                   })
   return (weather)
 }
@@ -184,7 +185,7 @@ query_weather <- function(fields, lat_input, lng_input, day_leaving, day_returni
 date_input <- function(day_leaving, day_returning){
 
   start_time <- anydate(day_leaving)
-  end_time <- anydate(day_returning)
+  end_time <- anydate(day_returning) + 1
 
   return(c(start_time, end_time))
 }

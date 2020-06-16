@@ -1,5 +1,6 @@
 ---
 output: github_document
+always_allow_html: yes
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -34,8 +35,13 @@ library(VacationApp)
 
 ## Directions Function
 The directions() function will provide directions on how to arrive to the designated route of choice. This function takes the following inputs: from, to. The parameter *from* will take in a string specifying the starting location of their travel route. The parameter *to* will take in a string specifying the final destination of their travel route. Both parameters will need to be in the format "Street Address, City, State". The function will return a data table of step-by-step directions and a Leaflet map visualizing the directions. Click on the Leaflet map markers to view each step of the directions to recieve a better visualization on how to get to your next vacation destination!
+
 ```{r}
-directions(from = "12 Garden St, Chatham, NJ", to = "275 Lincoln St, San Luis Obispo, CA")
+my_directions <- directions(from = "12 Garden St, Chatham, NJ", to = "275 Lincoln St, San Luis Obispo, CA")
+#displaying the data frame
+my_directions[[1]]
+#displaying Leaflet Map
+my_directions[[2]]
 ```
 
 ## Weather Function
@@ -47,10 +53,12 @@ The query_weather() function will provide the following information concerning t
 #fields of interest
 fields <- list("precipitation", "temp", "feels_like", "wind_speed", "visibility", "humidity", "sunrise", "sunset") 
 
+
 #calculating the number of days
 #num_days <- day(dates[2]) - day(dates[1]) + 2
 
-make_output(fields = fields, lat_input = 35.2877,lng_input = -120.6673, day_leaving = "2020-06-16", day_returning = "2020-06-18")
+make_output(fields = fields, lat_input = 35.2877,lng_input = -120.6673, day_leaving = "2020-06-18", day_returning = "2020-06-20")
+
 ```
 
 

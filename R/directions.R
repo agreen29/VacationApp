@@ -26,7 +26,7 @@ directions <- function(from, to){
 
   data_directions <- api_data$route$legs$maneuvers %>% as.data.frame()
   start_lat_long <- data_directions$startPoint
-  final_data <- data_directions %>% select(distance, narrative) %>% cbind(start_lat_long)
+  final_data <- data_directions %>% select(distance, narrative) %>% cbind(start_lat_long) %>% as.data.frame()
   colnames(final_data) <- c("Distance in Miles", "Directions", "Longitude", "Latitude")
   # leaflet map
   map <- leaflet(final_data) %>% addTiles() %>%
