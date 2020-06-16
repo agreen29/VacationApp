@@ -3,75 +3,29 @@
 #'@description The make_output function greats a data frame that includes weather forecasting for up to 15 days from today, after a user inputs
 #' a starting data and ending date of a trip. Th function uses another function in this package to get an address and plugs it into
 #' a query for a weather API to collect the forecast on that location.
-
-#' @description This is a helper function that takes in dates in yyyy-mm-dd format and outputs them in a form that the API can handle:
-#' @importFrom anytime anydate
-#'
-#' @param day_leaving the date the user is planning to leave for their vacation in yyyy-mm-dd format
-#' @param day_returning the last date the user is planning to be on their vacation in yyyy-mm-dd format
-#'
-#' @return a vector that includes the start time of the vacation and the end time in ISO8601 format for the API
-date_input <- function(day_leaving, day_returning){
-
-  start_time <- anydate(day_leaving)
-  end_time <- anydate(day_returning)
-
-  return(c(start_time, end_time))
-}
-
-
-#' @description This is the function that calls the API with the given dates from the date_input fucntion and the location from the
-#' directions function.
-#'
-#' @importFrom httr GET
-#' @importFrom jsonlite fromJSON
-#' @importFrom purrr pmap
-#'
-#' @param fields this is a list of weather fields that you want to collect in your weather query from climacell,
-#' the full list of offered fields are given at https://developer.climacell.co/v3/docs/forecast in the "Daily" section,
-#' this should be in a list format
-#' @param lat_input this is a latitude where you want to collect information on the given weather fields during the given dates
-#' @param lng_input this is a longitude where you want to collect information on the given weather fields during the given dates
-#' @param dates this is the output of the date_input function and gives the starting and ending date for the query to
-#' collect weather data for
-#'
-#' @return this returns a list of x lists that each include the output of the query for the particular weather field associated
-#' with it (x is the number of fields you listed in the fields parameter)
-
-query_weather <- function(fields, lat_input, lng_input, dates) {
-  weather <- pmap(list(x = fields),
-                  .f = function(x) {
-                    data.frame(fromJSON(rawToChar(
-                      GET(url = "https://api.climacell.co/v3/weather/forecast/daily",
-                          query= list(
-                            lat = lat_input,
-                            lon = lng_input,
-                            unit_system = "us",
-                            fields = x,
-                            start_time = dates[1],
-                            end_time = dates[2],
-                            apikey = "Sb9vXfDnuOb1qRqhdU0wgi7L9FeMB2D5"))$content)))
-                  })
-  return (weather)
-}
-
-#'@description this function uses the list of lists from the returned element in query_weather and creates a dataframe to show all weather
-#'requested in a nice manner and for the dates specified
 #'
 #'@importFrom lubridate rbind as_datetime
 #'@importFrom purrr pmap
 #'@import datetime
 #'@import tidyverse
 #'
-#'@param big_query this is the outputted list of all data collected from the query_weather helper function
-#'@param num_days this is the number of days between the start date and the end date of the vacation, this
+#' @param fields this is a list of weather fields that you want to collect in your weather query from climacell,
+#' the full list of offered fields are given at https://developer.climacell.co/v3/docs/forecast in the "Daily" section,
+#' this should be in a list format
+#' @param lat_input this is a latitude where you want to collect information on the given weather fields during the given dates
+#' @param lng_input this is a longitude where you want to collect information on the given weather fields during the given dates
+#' @param day_leaving the date the user is planning to leave for their vacation in yyyy-mm-dd format
+#' @param day_returning the last date the user is planning to be on their vacation in yyyy-mm-dd format
+#' @param num_days this is the number of days between the start date and the end date of the vacation, this
 #'should be calculated with dates[2] - dates[1] + 2
 #'
 #'@return a data frame with all weather for the given dates above and the given fields above
 #'
 #'@export
 
-make_output <- function(big_query, num_days) {
+make_output <- function(fields, lat_input, lng_input, day_leaving, day_returning, num_days) {
+
+  big_query <- query_weather(fields, lat_input, lng_input, day_leaving, day_returning)
 
   # temp out
   d_temp <- big_query[[2]]
@@ -177,4 +131,55 @@ make_output <- function(big_query, num_days) {
 
   weather <- rbind(temp_data, feels_data, precip_data, wind_data, vis_data, hum_data,  sunrise_data, sunset_data)
   return(weather)
+}
+
+#' @description This is the function that calls the API with the given dates from the date_input fucntion and the location from the
+#' directions function.
+#'
+#' @importFrom httr GET
+#' @importFrom jsonlite fromJSON
+#' @importFrom purrr pmap
+#'
+#' @param fields this is a list of weather fields that you want to collect in your weather query from climacell,
+#' the full list of offered fields are given at https://developer.climacell.co/v3/docs/forecast in the "Daily" section,
+#' this should be in a list format
+#' @param lat_input this is a latitude where you want to collect information on the given weather fields during the given dates
+#' @param lng_input this is a longitude where you want to collect information on the given weather fields during the given dates
+#' @param day_leaving the date the user is planning to leave for their vacation in yyyy-mm-dd format
+#' @param day_returning the last date the user is planning to be on their vacation in yyyy-mm-dd format
+#'
+#' @return this returns a list of x lists that each include the output of the query for the particular weather field associated
+#' with it (x is the number of fields you listed in the fields parameter)
+
+query_weather <- function(fields, lat_input, lng_input, day_leaving, day_returning) {
+  dates <- date_input(day_leaving, day_returning)
+  weather <- pmap(list(x = fields),
+                  .f = function(x) {
+                    data.frame(fromJSON(rawToChar(
+                      GET(url = "https://api.climacell.co/v3/weather/forecast/daily",
+                          query= list(
+                            lat = lat_input,
+                            lon = lng_input,
+                            unit_system = "us",
+                            fields = x,
+                            start_time = dates[1],
+                            end_time = dates[2],
+                            apikey = "Sb9vXfDnuOb1qRqhdU0wgi7L9FeMB2D5"))$content)))
+                  })
+  return (weather)
+}
+
+#' @description This is a helper function for query_weather that takes in dates in yyyy-mm-dd format and outputs them in a form that the API can handle:
+#' @importFrom anytime anydate
+#'
+#' @param day_leaving the date the user is planning to leave for their vacation in yyyy-mm-dd format
+#' @param day_returning the last date the user is planning to be on their vacation in yyyy-mm-dd format
+#'
+#' @return a vector that includes the start time of the vacation and the end time in ISO8601 format for the API
+date_input <- function(day_leaving, day_returning){
+
+  start_time <- anydate(day_leaving)
+  end_time <- anydate(day_returning)
+
+  return(c(start_time, end_time))
 }
