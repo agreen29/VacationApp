@@ -47,6 +47,10 @@ The query_weather() function will provide the following information concerning t
 #fields of interest
 fields <- list("precipitation", "temp", "feels_like", "wind_speed", "visibility", "humidity", "sunrise", "sunset") 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9a0fc084b2918adcb06628613625119fcd6d217d
 #calculating the number of days
 num_days <- day(dates[2]) - day(dates[1]) + 2
 
