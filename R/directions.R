@@ -14,6 +14,7 @@
 #' @import tidyverse
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
+#' @importFrom dplyr select
 #'
 #' @export
 

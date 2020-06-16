@@ -11,13 +11,13 @@ query_weather(fields, lat_input, lng_input, day_leaving, day_returning)
 the full list of offered fields are given at https://developer.climacell.co/v3/docs/forecast in the "Daily" section,
 this should be in a list format}
 
-\item{lat_input}{this is a latitude where you want to collect information on the given weather fields during the given dates}
+\item{lat_input}{this is a latitude where you want to collect information on the given weather fields during the given dates. Must be numeric.}
 
-\item{lng_input}{this is a longitude where you want to collect information on the given weather fields during the given dates}
+\item{lng_input}{this is a longitude where you want to collect information on the given weather fields during the given dates. Must be numeric.}
 
-\item{day_leaving}{the date the user is planning to leave for their vacation in yyyy-mm-dd format}
+\item{day_leaving}{the date the user is planning to leave for their vacation in yyyy-mm-dd format. Must be a string.}
 
-\item{day_returning}{the last date the user is planning to be on their vacation in yyyy-mm-dd format}
+\item{day_returning}{the last date the user is planning to be on their vacation in yyyy-mm-dd format. Must be a string.}
 }
 \value{
 this returns a list of x lists that each include the output of the query for the particular weather field associated
