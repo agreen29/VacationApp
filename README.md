@@ -32,9 +32,16 @@ Both parameters will need to be in the format “Street Address, City,
 State”. The function will return a data table of step-by-step directions
 and a Leaflet map visualizing the directions. Click on the Leaflet map
 markers to view each step of the directions to recieve a better
-visualization on how to get to your next vacation destination\!
+visualization on how to get to your next vacation
+destination\!
 
-``` r
+<div id="htmlwidget-7ab57412f7b1df4d5773" class="leaflet html-widget" style="width:100%;height:216px;">
+
+</div>
+
+<script type="application/json" data-for="htmlwidget-7ab57412f7b1df4d5773">
+
+```r
 my_directions <- directions(from = "12 Garden St, Chatham, NJ", to = "275 Lincoln St, San Luis Obispo, CA")
 #displaying the data frame
 out <- my_directions[[1]]
@@ -42,13 +49,8 @@ out <- my_directions[[1]]
 my_directions[[2]]
 ```
 
-<!--html_preserve-->
-
-<div id="htmlwidget-468ecb1d067fd8ab7757" class="leaflet html-widget" style="width:100%;height:480px;">
-
-</div>
-
-<script type="application/json" data-for="htmlwidget-468ecb1d067fd8ab7757">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[40.729744,40.729839,40.730549,40.746014,40.753582,40.75309,40.784615,40.86372,41.591743,41.577854,41.578255,41.57943,41.440346,41.596916,41.231907,41.232407,41.02877,39.787117,38.579834,34.875713,34.873745,35.355377,35.354359,35.354855,35.611778,35.615997,35.616295,35.642483,35.642365,35.284985,35.283859,35.284641,35.28764],[-74.416214,-74.41642,-74.415871,-74.430031,-74.438438,-74.452492,-74.468513,-74.41687,-87.228531,-87.541199,-87.669945,-87.675652,-90.321487,-90.675735,-95.835304,-95.903282,-102.151619,-105.077011,-112.598755,-117.071068,-117.079323,-119.175659,-119.250702,-119.332771,-119.649712,-119.651009,-119.650925,-120.685577,-120.685509,-120.665932,-120.668045,-120.668671,-120.667091],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Start out going northwest on Garden St toward Conger Ter.","Turn right onto Conger Ter.","Turn left onto Southern Blvd/County Hwy-647.","Turn left onto Shunpike Rd/County Hwy-646. Continue to follow Shunpike Rd.","Turn left onto Loantaka Way/County Hwy-636.","Turn right onto Spring Valley Rd/County Hwy-601. Continue to follow County Hwy-601.","Merge onto I-287 N via the ramp on the left.","Merge onto I-80 W via EXIT 41B toward Del Water Gap (Portions toll) (Passing through Pennsylvania and Ohio, then crossing into Indiana).","Merge onto I-80 W/I-94 W via EXIT 21 toward IN-51 S (Crossing into Illinois).","Keep left to take I-80 W/I-294 N toward Wisconsin-Iowa (Portions toll).","Take the I-80 W exit toward Iowa.","Merge onto I-80 W (Portions toll).","Stay straight to go onto I-280 W (Crossing into Iowa).","Merge onto I-80 W via the exit on the left toward Des Moines.","Stay straight to go onto I-80 (EXPRESS) W.","I-80 (EXPRESS) W becomes I-80 W (Crossing into Nebraska).","Merge onto I-76 W via EXIT 102 on the left toward Denver (Crossing into Colorado).","I-76 W becomes I-70 W (Crossing into Utah).","Merge onto I-15 S via the exit on the left toward Las Vegas (Passing through Arizona and Nevada, then crossing into California).","Take the CA-58 W exit, EXIT 179, toward Bakersfield.","Merge onto CA-58 W.","Stay straight to go onto Stockdale Hwy.","Keep left at the fork to continue on Stockdale Hwy.","Merge onto I-5 N toward Sacramento.","Take the CA-46 exit, EXIT 278, toward Lost Hills/Paso Robles.","Keep left to take the ramp toward Lost Hills/Paso Robles.","Turn left onto Highway 46/CA-46. Continue to follow CA-46.","Turn left to stay on CA-46.","Merge onto US-101 S.","Take the Broad St exit, EXIT 202B.","Turn slight right onto Broad St/CA-227.","Turn right onto Lincoln Ave/CA-227. Continue to follow Lincoln Ave.","275 LINCOLN AVE is on the left."],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolylines","args":[[[[{"lng":[-74.416214,-74.41642,-74.415871,-74.430031,-74.438438,-74.452492,-74.468513,-74.41687,-87.228531,-87.541199,-87.669945,-87.675652,-90.321487,-90.675735,-95.835304,-95.903282,-102.151619,-105.077011,-112.598755,-117.071068,-117.079323,-119.175659,-119.250702,-119.332771,-119.649712,-119.651009,-119.650925,-120.685577,-120.685509,-120.665932,-120.668045,-120.668671,-120.667091],"lat":[40.729744,40.729839,40.730549,40.746014,40.753582,40.75309,40.784615,40.86372,41.591743,41.577854,41.578255,41.57943,41.440346,41.596916,41.231907,41.232407,41.02877,39.787117,38.579834,34.875713,34.873745,35.355377,35.354359,35.354855,35.611778,35.615997,35.616295,35.642483,35.642365,35.284985,35.283859,35.284641,35.28764]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":false,"fillColor":"red","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[40.729744,-74.416214],15,[]],"limits":{"lat":[34.873745,41.596916],"lng":[-120.685577,-74.415871]}},"evals":[],"jsHooks":[]}</script>
+<!--html_preserve--><div id="htmlwidget-41e1563e9c935aa048a7" style="width:100%;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-41e1563e9c935aa048a7">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[40.729744,40.729839,40.730549,40.746014,40.753582,40.75309,40.784615,40.86372,41.591743,41.577854,41.578255,41.57943,41.440346,41.596916,41.231907,41.232407,41.02877,39.787117,38.579834,34.875713,34.873745,35.355377,35.354359,35.354855,35.611778,35.615997,35.616295,35.642483,35.642365,35.284985,35.283859,35.284641,35.28764],[-74.416214,-74.41642,-74.415871,-74.430031,-74.438438,-74.452492,-74.468513,-74.41687,-87.228531,-87.541199,-87.669945,-87.675652,-90.321487,-90.675735,-95.835304,-95.903282,-102.151619,-105.077011,-112.598755,-117.071068,-117.079323,-119.175659,-119.250702,-119.332771,-119.649712,-119.651009,-119.650925,-120.685577,-120.685509,-120.665932,-120.668045,-120.668671,-120.667091],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Start out going northwest on Garden St toward Conger Ter.","Turn right onto Conger Ter.","Turn left onto Southern Blvd/County Hwy-647.","Turn left onto Shunpike Rd/County Hwy-646. Continue to follow Shunpike Rd.","Turn left onto Loantaka Way/County Hwy-636.","Turn right onto Spring Valley Rd/County Hwy-601. Continue to follow County Hwy-601.","Merge onto I-287 N via the ramp on the left.","Merge onto I-80 W via EXIT 41B toward Del Water Gap (Portions toll) (Passing through Pennsylvania and Ohio, then crossing into Indiana).","Merge onto I-80 W/I-94 W via EXIT 21 toward IN-51 S (Crossing into Illinois).","Keep left to take I-80 W/I-294 N toward Wisconsin-Iowa (Portions toll).","Take the I-80 W exit toward Iowa.","Merge onto I-80 W (Portions toll).","Stay straight to go onto I-280 W (Crossing into Iowa).","Merge onto I-80 W via the exit on the left toward Des Moines.","Stay straight to go onto I-80 (EXPRESS) W.","I-80 (EXPRESS) W becomes I-80 W (Crossing into Nebraska).","Merge onto I-76 W via EXIT 102 on the left toward Denver (Crossing into Colorado).","I-76 W becomes I-70 W (Crossing into Utah).","Merge onto I-15 S via the exit on the left toward Las Vegas (Passing through Arizona and Nevada, then crossing into California).","Take the CA-58 W exit, EXIT 179, toward Bakersfield.","Merge onto CA-58 W.","Stay straight to go onto Stockdale Hwy.","Keep left at the fork to continue on Stockdale Hwy.","Merge onto I-5 N toward Sacramento.","Take the CA-46 exit, EXIT 278, toward Lost Hills/Paso Robles.","Keep left to take the ramp toward Lost Hills/Paso Robles.","Turn left onto Highway 46/CA-46. Continue to follow CA-46.","Turn left to stay on CA-46.","Merge onto US-101 S.","Take the Broad St exit, EXIT 202B.","Turn slight right onto Broad St/CA-227.","Turn right onto Lincoln Ave/CA-227. Continue to follow Lincoln Ave.","275 LINCOLN AVE is on the left."],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolylines","args":[[[[{"lng":[-74.416214,-74.41642,-74.415871,-74.430031,-74.438438,-74.452492,-74.468513,-74.41687,-87.228531,-87.541199,-87.669945,-87.675652,-90.321487,-90.675735,-95.835304,-95.903282,-102.151619,-105.077011,-112.598755,-117.071068,-117.079323,-119.175659,-119.250702,-119.332771,-119.649712,-119.651009,-119.650925,-120.685577,-120.685509,-120.665932,-120.668045,-120.668671,-120.667091],"lat":[40.729744,40.729839,40.730549,40.746014,40.753582,40.75309,40.784615,40.86372,41.591743,41.577854,41.578255,41.57943,41.440346,41.596916,41.231907,41.232407,41.02877,39.787117,38.579834,34.875713,34.873745,35.355377,35.354359,35.354855,35.611778,35.615997,35.616295,35.642483,35.642365,35.284985,35.283859,35.284641,35.28764]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":false,"fillColor":"red","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[40.729744,-74.416214],15,[]],"limits":{"lat":[34.873745,41.596916],"lng":[-120.685577,-74.415871]}},"evals":[],"jsHooks":[]}</script>
 
 <!--/html_preserve-->
 
@@ -121,19 +123,21 @@ num\_days)
 #fields of interest
 fields <- list("precipitation", "temp", "feels_like", "wind_speed", "visibility", "humidity", "sunrise", "sunset") 
 
-make_output(fields = fields, lat_input = 35.2877,lng_input = -120.6673, day_leaving = "2020-06-18", day_returning = "2020-06-20")
-#>                        Tue Jun 16 Wed Jun 17 Thu Jun 18 Fri Jun 19 Sat Jun 20
-#> Min Temp (F)                49.19       49.1      50.27      49.91      49.69
-#> Max Temp (F)                81.91      84.07      76.83      73.89      76.73
-#> Min Feels-Like (F)          49.19       49.1      50.27      49.91      49.69
-#> Max Feels-Like (F)          79.99      81.31      76.83      73.89      76.73
-#> Max Precipitation               0          0          0          0          0
-#> Min Wind Speed (mph)         4.36       0.74       1.79       0.92       0.23
-#> Max Wind Speed (mph)         8.66       8.58      10.42      10.77       9.76
-#> Min Visibility (miles)         15         15      12.22      12.22      12.23
-#> Max Visibility (miles)         15         15         15         15         15
-#> Min Humidity                 23.6       19.4       37.9       43.4       39.2
-#> Max Humidity                 77.8       77.1       86.2         92       89.7
-#> Sunrise                     05:47      05:47      05:48      05:48      05:48
-#> Sunset                      20:19      20:20      20:20      20:20      20:20
+output <- make_output(fields = fields, lat_input = 35.2877,lng_input = -120.6673, day_leaving = "2020-06-18", day_returning = "2020-06-20")
 ```
+
+|                        | Tue Jun 16 | Wed Jun 17 | Thu Jun 18 | Fri Jun 19 | Sat Jun 20 |
+| ---------------------- | :--------- | :--------- | :--------- | :--------- | :--------- |
+| Min Temp (F)           | 49.1       | 48.87      | 51.3       | 51.01      | 51.3       |
+| Max Temp (F)           | 82.67      | 85.73      | 77.69      | 74.87      | 79.25      |
+| Min Feels-Like (F)     | 49.1       | 48.87      | 51.3       | 51.01      | 51.3       |
+| Max Feels-Like (F)     | 80.44      | 82.51      | 77.69      | 74.87      | 79.25      |
+| Max Precipitation      | 0          | 0          | 0          | 0          | 0          |
+| Min Wind Speed (mph)   | 4.77       | 1.37       | 1.1        | 0.95       | 0.35       |
+| Max Wind Speed (mph)   | 8.92       | 8.09       | 10.28      | 10.22      | 10.07      |
+| Min Visibility (miles) | 15         | 15         | 12.22      | 12.22      | 12.22      |
+| Max Visibility (miles) | 15         | 15         | 15         | 15         | 15         |
+| Min Humidity           | 22.4       | 17.8       | 32.2       | 41.6       | 34.3       |
+| Max Humidity           | 85         | 79.1       | 87         | 88.4       | 82.6       |
+| Sunrise                | 05:47      | 05:47      | 05:48      | 05:48      | 05:48      |
+| Sunset                 | 20:19      | 20:20      | 20:20      | 20:20      | 20:20      |

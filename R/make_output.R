@@ -168,7 +168,7 @@ query_weather <- function(fields, lat_input, lng_input, day_leaving, day_returni
                             fields = x,
                             start_time = dates[1],
                             end_time = dates[2],
-                            apikey = "VE8O7bY7qptM8QqRSoOGRvT5AGQA3eHh"))$content)))
+                            apikey = "wuef6wJsQ3A0wwh9IMFsT8unWLjc5wts"))$content)))
 
                   })
   return (weather)
