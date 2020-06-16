@@ -11,7 +11,7 @@
 #' @return List of Data Table, Leaflet Map
 #'
 #' @import leaflet
-#' @importFrom tidyverse
+#' @import tidyverse
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #'
