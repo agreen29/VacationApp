@@ -12,10 +12,10 @@
 #' @param fields this is a list of weather fields that you want to collect in your weather query from climacell,
 #' the full list of offered fields are given at https://developer.climacell.co/v3/docs/forecast in the "Daily" section,
 #' this should be in a list format
-#' @param lat_input this is a latitude where you want to collect information on the given weather fields during the given dates
-#' @param lng_input this is a longitude where you want to collect information on the given weather fields during the given dates
-#' @param day_leaving the date the user is planning to leave for their vacation in yyyy-mm-dd format
-#' @param day_returning the last date the user is planning to be on their vacation in yyyy-mm-dd format
+#' @param lat_input this is a latitude where you want to collect information on the given weather fields during the given dates. Must be numeric.
+#' @param lng_input this is a longitude where you want to collect information on the given weather fields during the given dates. Must be numeric.
+#' @param day_leaving the date the user is planning to leave for their vacation in yyyy-mm-dd format. Must be a string.
+#' @param day_returning the last date the user is planning to be on their vacation in yyyy-mm-dd format. Must be a string.
 #' @param num_days this is the number of days between the start date and the end date of the vacation, this
 #'should be calculated with dates[2] - dates[1] + 2
 #'
@@ -144,10 +144,10 @@ make_output <- function(fields, lat_input, lng_input, day_leaving, day_returning
 #' @param fields this is a list of weather fields that you want to collect in your weather query from climacell,
 #' the full list of offered fields are given at https://developer.climacell.co/v3/docs/forecast in the "Daily" section,
 #' this should be in a list format
-#' @param lat_input this is a latitude where you want to collect information on the given weather fields during the given dates
-#' @param lng_input this is a longitude where you want to collect information on the given weather fields during the given dates
-#' @param day_leaving the date the user is planning to leave for their vacation in yyyy-mm-dd format
-#' @param day_returning the last date the user is planning to be on their vacation in yyyy-mm-dd format
+#' @param lat_input this is a latitude where you want to collect information on the given weather fields during the given dates. Must be numeric.
+#' @param lng_input this is a longitude where you want to collect information on the given weather fields during the given dates. Must be numeric.
+#' @param day_leaving the date the user is planning to leave for their vacation in yyyy-mm-dd format. Must be a string.
+#' @param day_returning the last date the user is planning to be on their vacation in yyyy-mm-dd format. Must be a string.
 #'
 #' @return this returns a list of x lists that each include the output of the query for the particular weather field associated
 #' with it (x is the number of fields you listed in the fields parameter)
