@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>VacationApp</title>
+
+<script src="README_files/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="README_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="README_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="README_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="README_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="README_files/navigation-1.1/tabsets.js"></script>
+<link href="README_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="README_files/highlightjs-9.12.0/highlight.js"></script>
+<link href="README_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="README_files/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="README_files/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="README_files/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="README_files/leaflet-1.3.1/leaflet.js"></script>
+<link href="README_files/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="README_files/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="README_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="README_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="README_files/leaflet-binding-2.0.3/leaflet.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">VacationApp</h1>
+
+</div>
+
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div id="vacationapp" class="section level1">
+<h1>VacationApp</h1>
+<!-- badges: start -->
+<!-- badges: end -->
+<p>The goal of VacationApp is to provide information to the user about the destination they are wishing to travel to. This package will display information about the route directions and the forecasted weather of their destination of interest</p>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>You can install the released version of VacationApp from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<pre class="r"><code>install.packages(&quot;VacationApp&quot;)</code></pre>
+</div>
+<div id="directions-function" class="section level2">
+<h2>Directions Function</h2>
+<p>The directions() function will provide directions on how to arrive to the designated route of choice. This function takes the following inputs: from, to. The parameter <em>from</em> will take in a string specifying the starting location of their travel route. The parameter <em>to</em> will take in a string specifying the final destination of their travel route. Both parameters will need to be in the format “Street Address, City, State”. The function will return a data table of step-by-step directions and a Leaflet map visualizing the directions. Click on the Leaflet map markers to view each step of the directions to recieve a better visualization on how to get to your next vacation destination!</p>
+<pre class="r"><code>my_directions &lt;- directions(from = &quot;12 Garden St, Chatham, NJ&quot;, to = &quot;275 Lincoln St, San Luis Obispo, CA&quot;)
+#displaying the data frame
+my_directions[[1]]</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Distance in Miles"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Directions"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Longitude"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Latitude"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.0130","2":"Start out going northwest on Garden St toward Conger Ter.","3":"-74.41621","4":"40.72974","_rn_":"1"},{"1":"0.0570","2":"Turn right onto Conger Ter.","3":"-74.41642","4":"40.72984","_rn_":"2"},{"1":"1.4680","2":"Turn left onto Southern Blvd/County Hwy-647.","3":"-74.41587","4":"40.73055","_rn_":"3"},{"1":"0.7370","2":"Turn left onto Shunpike Rd/County Hwy-646. Continue to follow Shunpike Rd.","3":"-74.43003","4":"40.74601","_rn_":"4"},{"1":"0.7580","2":"Turn left onto Loantaka Way/County Hwy-636.","3":"-74.43844","4":"40.75358","_rn_":"5"},{"1":"2.4600","2":"Turn right onto Spring Valley Rd/County Hwy-601. Continue to follow County Hwy-601.","3":"-74.45249","4":"40.75309","_rn_":"6"},{"1":"6.4210","2":"Merge onto I-287 N via the ramp on the left.","3":"-74.46851","4":"40.78462","_rn_":"7"},{"1":"727.8751","2":"Merge onto I-80 W via EXIT 41B toward Del Water Gap (Portions toll) (Passing through Pennsylvania and Ohio, then crossing into Indiana).","3":"-74.41687","4":"40.86372","_rn_":"8"},{"1":"17.0460","2":"Merge onto I-80 W/I-94 W via EXIT 21 toward IN-51 S (Crossing into Illinois).","3":"-87.22853","4":"41.59174","_rn_":"9"},{"1":"6.6910","2":"Keep left to take I-80 W/I-294 N toward Wisconsin-Iowa (Portions toll).","3":"-87.54120","4":"41.57785","_rn_":"10"},{"1":"0.3100","2":"Take the I-80 W exit toward Iowa.","3":"-87.66994","4":"41.57825","_rn_":"11"},{"1":"145.0400","2":"Merge onto I-80 W (Portions toll).","3":"-87.67565","4":"41.57943","_rn_":"12"},{"1":"27.1420","2":"Stay straight to go onto I-280 W (Crossing into Iowa).","3":"-90.32149","4":"41.44035","_rn_":"13"},{"1":"285.6210","2":"Merge onto I-80 W via the exit on the left toward Des Moines.","3":"-90.67574","4":"41.59692","_rn_":"14"},{"1":"3.5440","2":"Stay straight to go onto I-80 (EXPRESS) W.","3":"-95.83530","4":"41.23191","_rn_":"15"},{"1":"352.7650","2":"I-80 (EXPRESS) W becomes I-80 W (Crossing into Nebraska).","3":"-95.90328","4":"41.23241","_rn_":"16"},{"1":"186.8140","2":"Merge onto I-76 W via EXIT 102 on the left toward Denver (Crossing into Colorado).","3":"-102.15162","4":"41.02877","_rn_":"17"},{"1":"501.7810","2":"I-76 W becomes I-70 W (Crossing into Utah).","3":"-105.07701","4":"39.78712","_rn_":"18"},{"1":"401.3790","2":"Merge onto I-15 S via the exit on the left toward Las Vegas (Passing through Arizona and Nevada, then crossing into California).","3":"-112.59875","4":"38.57983","_rn_":"19"},{"1":"0.5740","2":"Take the CA-58 W exit, EXIT 179, toward Bakersfield.","3":"-117.07107","4":"34.87571","_rn_":"20"},{"1":"134.1480","2":"Merge onto CA-58 W.","3":"-117.07932","4":"34.87374","_rn_":"21"},{"1":"4.2500","2":"Stay straight to go onto Stockdale Hwy.","3":"-119.17566","4":"35.35538","_rn_":"22"},{"1":"4.6360","2":"Keep left at the fork to continue on Stockdale Hwy.","3":"-119.25070","4":"35.35436","_rn_":"23"},{"1":"25.2630","2":"Merge onto I-5 N toward Sacramento.","3":"-119.33277","4":"35.35486","_rn_":"24"},{"1":"0.3180","2":"Take the CA-46 exit, EXIT 278, toward Lost Hills/Paso Robles.","3":"-119.64971","4":"35.61178","_rn_":"25"},{"1":"0.0210","2":"Keep left to take the ramp toward Lost Hills/Paso Robles.","3":"-119.65101","4":"35.61600","_rn_":"26"},{"1":"63.7750","2":"Turn left onto Highway 46/CA-46. Continue to follow CA-46.","3":"-119.65093","4":"35.61630","_rn_":"27"},{"1":"0.0090","2":"Turn left to stay on CA-46.","3":"-120.68558","4":"35.64248","_rn_":"28"},{"1":"28.9690","2":"Merge onto US-101 S.","3":"-120.68551","4":"35.64236","_rn_":"29"},{"1":"0.1580","2":"Take the Broad St exit, EXIT 202B.","3":"-120.66593","4":"35.28498","_rn_":"30"},{"1":"0.0650","2":"Turn slight right onto Broad St/CA-227.","3":"-120.66805","4":"35.28386","_rn_":"31"},{"1":"0.2630","2":"Turn right onto Lincoln Ave/CA-227. Continue to follow Lincoln Ave.","3":"-120.66867","4":"35.28464","_rn_":"32"},{"1":"0.0000","2":"275 LINCOLN AVE is on the left.","3":"-120.66709","4":"35.28764","_rn_":"33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>#displaying Leaflet Map
+my_directions[[2]]</code></pre>
+<div id="htmlwidget-50c5b0ec3a678c3074fb" style="width:100%;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-50c5b0ec3a678c3074fb">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[40.729744,40.729839,40.730549,40.746014,40.753582,40.75309,40.784615,40.86372,41.591743,41.577854,41.578255,41.57943,41.440346,41.596916,41.231907,41.232407,41.02877,39.787117,38.579834,34.875713,34.873745,35.355377,35.354359,35.354855,35.611778,35.615997,35.616295,35.642483,35.642365,35.284985,35.283859,35.284641,35.28764],[-74.416214,-74.41642,-74.415871,-74.430031,-74.438438,-74.452492,-74.468513,-74.41687,-87.228531,-87.541199,-87.669945,-87.675652,-90.321487,-90.675735,-95.835304,-95.903282,-102.151619,-105.077011,-112.598755,-117.071068,-117.079323,-119.175659,-119.250702,-119.332771,-119.649712,-119.651009,-119.650925,-120.685577,-120.685509,-120.665932,-120.668045,-120.668671,-120.667091],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Start out going northwest on Garden St toward Conger Ter.","Turn right onto Conger Ter.","Turn left onto Southern Blvd/County Hwy-647.","Turn left onto Shunpike Rd/County Hwy-646. Continue to follow Shunpike Rd.","Turn left onto Loantaka Way/County Hwy-636.","Turn right onto Spring Valley Rd/County Hwy-601. Continue to follow County Hwy-601.","Merge onto I-287 N via the ramp on the left.","Merge onto I-80 W via EXIT 41B toward Del Water Gap (Portions toll) (Passing through Pennsylvania and Ohio, then crossing into Indiana).","Merge onto I-80 W/I-94 W via EXIT 21 toward IN-51 S (Crossing into Illinois).","Keep left to take I-80 W/I-294 N toward Wisconsin-Iowa (Portions toll).","Take the I-80 W exit toward Iowa.","Merge onto I-80 W (Portions toll).","Stay straight to go onto I-280 W (Crossing into Iowa).","Merge onto I-80 W via the exit on the left toward Des Moines.","Stay straight to go onto I-80 (EXPRESS) W.","I-80 (EXPRESS) W becomes I-80 W (Crossing into Nebraska).","Merge onto I-76 W via EXIT 102 on the left toward Denver (Crossing into Colorado).","I-76 W becomes I-70 W (Crossing into Utah).","Merge onto I-15 S via the exit on the left toward Las Vegas (Passing through Arizona and Nevada, then crossing into California).","Take the CA-58 W exit, EXIT 179, toward Bakersfield.","Merge onto CA-58 W.","Stay straight to go onto Stockdale Hwy.","Keep left at the fork to continue on Stockdale Hwy.","Merge onto I-5 N toward Sacramento.","Take the CA-46 exit, EXIT 278, toward Lost Hills/Paso Robles.","Keep left to take the ramp toward Lost Hills/Paso Robles.","Turn left onto Highway 46/CA-46. Continue to follow CA-46.","Turn left to stay on CA-46.","Merge onto US-101 S.","Take the Broad St exit, EXIT 202B.","Turn slight right onto Broad St/CA-227.","Turn right onto Lincoln Ave/CA-227. Continue to follow Lincoln Ave.","275 LINCOLN AVE is on the left."],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolylines","args":[[[[{"lng":[-74.416214,-74.41642,-74.415871,-74.430031,-74.438438,-74.452492,-74.468513,-74.41687,-87.228531,-87.541199,-87.669945,-87.675652,-90.321487,-90.675735,-95.835304,-95.903282,-102.151619,-105.077011,-112.598755,-117.071068,-117.079323,-119.175659,-119.250702,-119.332771,-119.649712,-119.651009,-119.650925,-120.685577,-120.685509,-120.665932,-120.668045,-120.668671,-120.667091],"lat":[40.729744,40.729839,40.730549,40.746014,40.753582,40.75309,40.784615,40.86372,41.591743,41.577854,41.578255,41.57943,41.440346,41.596916,41.231907,41.232407,41.02877,39.787117,38.579834,34.875713,34.873745,35.355377,35.354359,35.354855,35.611778,35.615997,35.616295,35.642483,35.642365,35.284985,35.283859,35.284641,35.28764]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":false,"fillColor":"red","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[40.729744,-74.416214],15,[]],"limits":{"lat":[34.873745,41.596916],"lng":[-120.685577,-74.415871]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="weather-function" class="section level2">
+<h2>Weather Function</h2>
+<p>The query_weather() function will provide the following information concerning the forecast weather for their destination: the daily temperature, precipitation, wind speed, humidity, visibility, time of sunrise, and time of sunset! The parameter <em>lat_input</em> will take in an integer of the latitude where you want to collect information on the given weather fields during the given dates. The parameter <em>lng_input</em> will take in an integer of the longitude where you want to collect information on the given weather fields during the given dates. The parameter <em>day_leaving</em> will take in the date the user is planning to leave for their vacation in yyyy-mm-dd format. The parameter <em>day_returning</em> will take in the last date the user is planning to be on their vacation in yyyy-mm-dd format. The parameter <em>num_days</em> will take in the number of days between the start date and the end date of the vacation. This function will return a a data frame with all weather forecasts for the given dates above. This information will be extremely useful for families who want to compare different camping sites, so they will be able to make an informed decision on the best travel spot for their weekend getaway.</p>
+<p>(fields, lat_input, lng_input, day_leaving, day_returning, num_days)</p>
+<pre class="r"><code>#fields of interest
+fields &lt;- list(&quot;precipitation&quot;, &quot;temp&quot;, &quot;feels_like&quot;, &quot;wind_speed&quot;, &quot;visibility&quot;, &quot;humidity&quot;, &quot;sunrise&quot;, &quot;sunset&quot;) 
+
+
+#calculating the number of days
+#num_days &lt;- day(dates[2]) - day(dates[1]) + 2
+
+make_output(fields = fields, lat_input = 35.2877,lng_input = -120.6673, day_leaving = &quot;2020-06-18&quot;, day_returning = &quot;2020-06-20&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Tue Jun 16"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Wed Jun 17"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Thu Jun 18"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Fri Jun 19"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Sat Jun 20"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"49.19","2":"49.1","3":"50.27","4":"49.91","5":"49.69","_rn_":"Min Temp (F)"},{"1":"81.91","2":"84.07","3":"76.83","4":"73.89","5":"76.73","_rn_":"Max Temp (F)"},{"1":"49.19","2":"49.1","3":"50.27","4":"49.91","5":"49.69","_rn_":"Min Feels-Like (F)"},{"1":"79.99","2":"81.31","3":"76.83","4":"73.89","5":"76.73","_rn_":"Max Feels-Like (F)"},{"1":"0","2":"0","3":"0","4":"0","5":"0","_rn_":"Max Precipitation"},{"1":"4.36","2":"0.74","3":"1.79","4":"0.92","5":"0.23","_rn_":"Min Wind Speed (mph)"},{"1":"8.66","2":"8.58","3":"10.42","4":"10.77","5":"9.76","_rn_":"Max Wind Speed (mph)"},{"1":"15","2":"15","3":"12.22","4":"12.22","5":"12.23","_rn_":"Min Visibility (miles)"},{"1":"15","2":"15","3":"15","4":"15","5":"15","_rn_":"Max Visibility (miles)"},{"1":"23.6","2":"19.4","3":"37.9","4":"43.4","5":"39.2","_rn_":"Min Humidity"},{"1":"77.8","2":"77.1","3":"86.2","4":"92","5":"89.7","_rn_":"Max Humidity"},{"1":"05:47","2":"05:47","3":"05:48","4":"05:48","5":"05:48","_rn_":"Sunrise"},{"1":"20:19","2":"20:20","3":"20:20","4":"20:20","5":"20:20","_rn_":"Sunset"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
