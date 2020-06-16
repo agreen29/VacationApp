@@ -45,7 +45,6 @@ The query_weather() function will provide the following information concerning t
 ```{r}
 fields <- list("precipitation", "temp", "feels_like", "wind_speed", "visibility", "humidity", "sunrise", "sunset") 
 
-dates <- date_input("2020-06-13", "2020-06-16")
 
 #calculating the number of days
 num_days <- day(dates[2]) - day(dates[1]) + 2
