@@ -1,0 +1,37 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# VacationApp
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of VacationApp is to provide information to the user about the destination they are wishing to travel to. This package will display information about the route directions and the forecasted weather of their destination of interest
+
+## Installation
+
+You can install the released version of VacationApp from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("VacationApp")
+```
+
+```{r include = FALSE}
+library(VacationApp)
+```
+
+## Directions Function
+
+## Weather Function
